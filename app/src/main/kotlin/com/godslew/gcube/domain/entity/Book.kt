@@ -7,7 +7,7 @@ data class Book(
     val kind: String,
     val eTag: String,
     val selfLink: String,
-    val volumeInfo: VolumeInfo
+    val volumeInfo: VolumeInfo?
 )
 
 data class VolumeInfo(

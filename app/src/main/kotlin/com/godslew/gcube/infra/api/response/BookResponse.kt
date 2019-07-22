@@ -15,9 +15,9 @@ data class BookResponse(
 
 data class VolumeInfoResponse(
   @SerializedName("title") var title: String,
-  @SerializedName("subtitle") var subtitle: String,
-  @SerializedName("authors") var authors: List<AuthorResponse>?,
-  @SerializedName("publisher") var publisher: String,
+  @SerializedName("subtitle") var subtitle: String?,
+  @SerializedName("authors") var authors: List<String>,
+  @SerializedName("publisher") var publisher: String?,
   @SerializedName("publishedDate") var publishedDate: String,
   @SerializedName("description") var description: String,
   @SerializedName("imageLinks") var imageLinks: ImagesResponse
@@ -25,9 +25,9 @@ data class VolumeInfoResponse(
   fun toVolume(): VolumeInfo {
     return VolumeInfo(
       title = title,
-      subtitle = subtitle,
-      authors = authors?.map { it.author },
-      publisher = publisher,
+      subtitle = subtitle ?: "",
+      authors = authors,
+      publisher = publisher?:"",
       publishedDate = Date(),
       description = description,
       images = imageLinks.toImages()
@@ -35,26 +35,22 @@ data class VolumeInfoResponse(
   }
 }
 
-data class AuthorResponse(
-  @SerializedName("author") var author: String
-)
-
 data class ImagesResponse(
-  @SerializedName("smallThumbnail") var smallThumbnail: String,
-  @SerializedName("thumbnail") var thumbnail: String,
-  @SerializedName("small") var small: String,
-  @SerializedName("medium") var medium: String,
-  @SerializedName("large") var large: String,
-  @SerializedName("extraLarge") var extraLarge: String
+  @SerializedName("smallThumbnail") var smallThumbnail: String?,
+  @SerializedName("thumbnail") var thumbnail: String?,
+  @SerializedName("small") var small: String?,
+  @SerializedName("medium") var medium: String?,
+  @SerializedName("large") var large: String?,
+  @SerializedName("extraLarge") var extraLarge: String?
 ) {
   fun toImages(): Images {
     return Images(
-      smallThumbnail = smallThumbnail,
-      thumbnail = thumbnail,
-      small = small,
-      medium = medium,
-      large = large,
-      extraLarge = extraLarge
+      smallThumbnail = smallThumbnail ?: "",
+      thumbnail = thumbnail ?: "",
+      small = small ?: "",
+      medium = medium ?: "",
+      large = large ?: "",
+      extraLarge = extraLarge ?: ""
     )
   }
 }

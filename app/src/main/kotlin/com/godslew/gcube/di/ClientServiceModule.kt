@@ -1,6 +1,7 @@
 package com.godslew.gcube.di
 
 import com.godslew.gcube.infra.api.client.BooksClient
+import com.google.gson.Gson
 import okhttp3.OkHttpClient
 import org.koin.core.module.Module
 import org.koin.dsl.module
@@ -14,7 +15,7 @@ val clientServiceModule : Module = module {
     .client(OkHttpClient.Builder().build())
     .baseUrl("https://www.googleapis.com/books/v1/")
     .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-    .addConverterFactory(GsonConverterFactory.create())
+    .addConverterFactory(GsonConverterFactory.create(Gson()))
     .build()
     .create(BooksClient.BooksService::class.java) }
 }

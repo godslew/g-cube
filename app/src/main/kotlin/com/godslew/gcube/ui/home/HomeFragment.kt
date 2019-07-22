@@ -31,6 +31,7 @@ class HomeFragment : Fragment() {
 
     override fun onDestroyView() {
         super.onDestroyView()
+        homeViewModel.onDestroy()
         binding.unbind()
     }
 }
