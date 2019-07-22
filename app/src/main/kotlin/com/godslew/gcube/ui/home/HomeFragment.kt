@@ -23,6 +23,9 @@ class HomeFragment : Fragment() {
         homeViewModel.text.observe(this, Observer { text ->
             binding.textHome.text = text
         })
+        binding.testButton.setOnClickListener {
+            homeViewModel.fetchBooks()
+        }
         return binding.root
     }
 
