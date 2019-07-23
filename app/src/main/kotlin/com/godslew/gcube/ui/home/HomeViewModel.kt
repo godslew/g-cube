@@ -25,7 +25,11 @@ class HomeViewModel(
     repository.fetchBooks(query = "intitle:変態王子と笑わない猫")
       .subscribeOn(Schedulers.io())
       .observeOn(AndroidSchedulers.mainThread())
-      .subscribe { result ->  Log.d(TAG, "response=$result") }
+      .subscribe { result ->
+        result.forEach {
+          Log.d(TAG, "$it")
+        }
+      }
       .addTo(disposables)
   }
 
